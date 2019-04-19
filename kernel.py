@@ -24,6 +24,9 @@ class IdentityKernel:
     def __call__(self, x, xi):
         return x
     
+    def setParams(self, params):
+        return
+    
 # Gauss Kernel
 class GaussKernel(Kernel):
     def __init__(self, h=1.0):
@@ -34,6 +37,7 @@ class GaussKernel(Kernel):
     def __call__(self, x, xi):
         return np.exp(-np.linalg.norm(x-xi)**2/(2*self.h**2))
     
-    def setParam(self, h):
+    def setParams(self, h):
+        # should check
         self.h = h
         return

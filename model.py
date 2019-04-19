@@ -26,11 +26,11 @@ class L2SquareLoss:
         self.l = l
 
 # a whole model which has linear model, kernel, and criteria
-class L2LinearGaussKernelModel:
-    def __init__(self):
+class L2LinearKernelModel:
+    def __init__(self, kernel):
         self.criteria = L2SquareLoss()
         self.model = LinearKernelModel()
-        self.kernel = knl.GaussKernel()
+        self.kernel = kernel #knl.GaussKernel()
         return
     
     def __call__(self, x):
@@ -45,6 +45,10 @@ class L2LinearGaussKernelModel:
     def test(self, x, y):
         return self.criteria(self.model, self.kernel, x, y)
     
-    def setParam(self, kernel_h, l2_lambda):
-        self.kernel.setParam(kernel_h)
-        self.criteria.setParam(l2_lambda)
+    def setKernelParams(self, params):
+        self.kernel.setParams(params)
+        return
+    
+    def setCriteriaParams(self, params):
+        self.criteria.setParam(params)
+        return
